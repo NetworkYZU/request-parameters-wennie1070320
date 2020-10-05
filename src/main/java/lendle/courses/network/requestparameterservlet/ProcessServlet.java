@@ -1,4 +1,4 @@
-/*
+/*從網址改參數!!!!!!!!!!!!!!!!!!!!!!!!!!!    ?username=123&555=666 像這樣改，重整網頁即可
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -7,6 +7,7 @@ package lendle.courses.network.requestparameterservlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +42,12 @@ public class ProcessServlet extends HttpServlet {
             out.println("<title>Servlet ProcessServlet</title>");            
             out.println("</head>");
             out.println("<body>");
+            Enumeration<String> names=request.getParameterNames(); //enumeration 是簡單的array//getParameterNames()是獲得多個參數
+            while(names.hasMoreElements()){     
+                String name=names.nextElement();
+                out.print(name+"=");
+                out.print(request.getParameter(name)+"<br/>");  
+            }
             out.println(request.getParameter("username"));
             out.println("</body>");
             out.println("</html>");
